@@ -51,7 +51,7 @@ Ele é útil para entender a distribuição dos desfechos dos processos com mér
 </div>
 """, unsafe_allow_html=True)
 
-st.write("")
+st.markdown("<br><br>", unsafe_allow_html=True)
 
 
 tese_columns = [
