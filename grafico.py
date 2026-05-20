@@ -401,6 +401,63 @@ Este gráfico de barras empilhadas mostra a contagem de cada tipo de <i>resultad
 """, unsafe_allow_html=True)
 
 
+st.markdown("<br><br>", unsafe_allow_html=True)
+
+
+
+
+# Definir as faixas de valor e os rótulos
+bins = [0, 10000, 50000, 100000, 500000, df['Valor_da_Causa'].max() + 1] # Adicionado +1 para garantir que o valor máximo seja incluído
+labels = ['Até R$ 10k', 'R$ 10k - R$ 50k', 'R$ 50k - R$ 100k', 'R$ 100k - R$ 500k', 'Acima de R$ 500k']
+
+# Criar a coluna 'Faixa de Valor' usando pd.cut
+df['Faixa de Valor'] = pd.cut(df['Valor_da_Causa'], bins=bins, labels=labels, right=False, include_lowest=True)
+
+# Calcular a contagem de cada resultado por faixa de valor
+contagem_por_faixa = df.groupby(['Faixa de Valor', 'Resultado']).size().unstack(fill_value=0)
+
+# Calcular o percentual
+percentual_por_faixa = contagem_por_faixa.apply(lambda x: x / x.sum() * 100, axis=1)
+
+# Reordenar as colunas de resultado para a plotagem, se necessário
+orden_resultados = ['Improcedente', 'Procedente em parte', 'Procedente']
+percentual_por_faixa = percentual_por_faixa[orden_resultados]
+
+# Importar Matplotlib para criar um colormap personalizado
+import matplotlib.colors as mcolors
+
+# Definir as cores personalizadas
+custom_colors = ['#942234', '#aa8424', '#0c326f']
+custom_cmap = mcolors.ListedColormap(custom_colors)
+
+# Plotar o gráfico de barras empilhadas com o colormap personalizado
+percentual_por_faixa.plot(kind='bar', stacked=True, figsize=(12, 7), colormap=custom_cmap)
+plt.title('GRÁFICO 7 - Distribuição de Resultados por Faixa de Valor da Causa - 1ª Instância')
+plt.xlabel('Faixa de Valor da Causa')
+plt.ylabel('Percentual (%)')
+plt.xticks(rotation=45, ha='right')
+plt.legend(title='Resultado', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+st.pyplot(plt)
+plt.show()
+
+
+st.markdown("""
+<div style="
+    padding: 15px;
+    background-color: #f0f2f6;
+    border-left: 5px solid #0c326f;
+    border-radius: 5px;
+">
+<b>Distribuição de Resultados por Faixa de Valor da Causa</b><br>
+Este gráfico de barras empilhadas mostra como a distribuição dos <i>resultados</i> varia entre diferentes faixas 
+de <i>valor_da_causa</i>. Ele permite analisar se o valor atribuído a um processo influencia seu desfecho, 
+por exemplo, se processos de maior valor tendem a ter um resultado diferente dos de menor valor.
+</div>
+""", unsafe_allow_html=True)
+
+
+
 
 
 
