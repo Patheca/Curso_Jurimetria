@@ -88,7 +88,7 @@ accepted_df = accepted_df.sort_values(by='Contagem de Aceitos', ascending=False)
 # Create a custom palette starting with the requested color
 custom_palette = sns.light_palette("#942234", n_colors=len(accepted_df), reverse=True)
 
-plt.figure(figsize=(12, 8))
+plt.figure(figsize=(10, 6))
 ax = sns.barplot(
     x='Contagem de Aceitos',
     y='Tese Curta',
@@ -185,7 +185,7 @@ accepted_df_acor = accepted_df_acor.sort_values(by='Contagem de Aceitos', ascend
 # Create a custom palette starting with the requested color
 custom_palette = sns.light_palette("#942234", n_colors=len(accepted_df_acor), reverse=True)
 
-plt.figure(figsize=(12, 8))
+plt.figure(figsize=(10, 6))
 sns.barplot(x='Contagem de Aceitos', y='Tese Curta', data=accepted_df, palette=custom_palette)
 plt.title('Aderência às Teses de Defesa (Fazenda Nacional)')
 plt.xlabel('Quantidade de Teses Aceitas')
@@ -196,7 +196,7 @@ plt.tight_layout()
 plt.show()
 
 
-plt.figure(figsize=(12, 8))
+plt.figure(figsize=(10, 6))
 ax = sns.barplot(
     x='Contagem de Aceitos',
     y='Tese Curta',
@@ -276,7 +276,7 @@ inst1 += inst1[:1]
 inst2 += inst2[:1]
 angles += angles[:1]
 
-plt.figure(figsize=(7,7))
+plt.figure(figsize=(10,6))
 ax = plt.subplot(111, polar=True)
 
 ax.plot(angles, inst1, linewidth=2, label="1ª Instância", color="#942234")
@@ -377,7 +377,7 @@ custom_colors = ['#942234', '#aa8424', '#0c326f']
 custom_cmap = mcolors.ListedColormap(custom_colors)
 
 # Plotar o gráfico de barras empilhadas
-fig, ax = plt.subplots(figsize=(12, 7))
+fig, ax = plt.subplots(figsize=(10, 8))
 df_crosstab.plot(kind='bar', stacked=True, ax=ax, colormap=custom_cmap)
 
 plt.title('GRÁFICO 6 - Distribuição Percentual de Resultados por Classe de Processo - 1ª Instância', fontsize=10, fontweight='bold')
@@ -435,7 +435,7 @@ custom_colors = ['#942234', '#aa8424', '#0c326f']
 custom_cmap = mcolors.ListedColormap(custom_colors)
 
 # Plotar o gráfico de barras empilhadas com o colormap personalizado
-percentual_por_faixa.plot(kind='bar', stacked=True, figsize=(12, 7), colormap=custom_cmap)
+percentual_por_faixa.plot(kind='bar', stacked=True, figsize=(10, 8), colormap=custom_cmap)
 plt.title('GRÁFICO 7 - Distribuição de Resultados por Faixa de Valor da Causa - 1ª Instância', fontsize=10, fontweight='bold')
 plt.xlabel('Faixa de Valor da Causa')
 plt.ylabel('Percentual (%)')
