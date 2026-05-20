@@ -303,3 +303,52 @@ das teses de mérito.
 
 
 
+st.markdown("<br><br>", unsafe_allow_html=True)
+
+
+
+import pandas as pd
+from pathlib import Path
+
+
+COLUNA = 'Classe'
+
+contagem = df[COLUNA].value_counts()
+
+cats = contagem.index.tolist()
+
+
+#Gráfico — Frequência relativa da população
+proporcao = (contagem / contagem.sum()) * 100
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.barh(cats[::-1], proporcao.values[::-1], color="#aa8424", edgecolor="white", height=0.5)
+for i, p in enumerate(proporcao.values[::-1]):
+    ax.text(p + 0.5, i, f"{p:.1f}%".replace(".", ","), va="center", fontsize=9)
+ax.set_xlim(0, 100)
+ax.set_title(f"GRÁFICO 5 - {COLUNA} — Frequência relativa da amostra - SENTENÇAS")
+ax.set_xlabel("%")
+ax.spines[["top", "right"]].set_visible(False)
+plt.tight_layout()
+print("Gráfico salvo: p2_classe_relativa.png")
+pt.pyplot(plt)
+plt.show()
+
+
+
+
+st.markdown("""
+<div style="
+    padding: 15px;
+    background-color: #f0f2f6;
+    border-left: 5px solid #0c326f;
+    border-radius: 5px;
+">
+<b>Frequência Relativa de Processos por Classe</b><br>
+Complementar ao gráfico de contagem absoluta, este gráfico exibe a distribuição percentual de cada <i>classe</i> de processo. 
+Ele é útil para visualizar a proporção de cada classe em relação ao total de processos.
+</div>
+""", unsafe_allow_html=True)
+
+
+
+
