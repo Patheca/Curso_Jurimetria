@@ -377,7 +377,7 @@ custom_colors = ['#942234', '#aa8424', '#0c326f']
 custom_cmap = mcolors.ListedColormap(custom_colors)
 
 # Plotar o gráfico de barras empilhadas
-fig, ax = plt.subplots(figsize=(10, 6))
+fig, ax = plt.subplots(figsize=(10, 4))
 df_crosstab.plot(kind='bar', stacked=True, ax=ax, colormap=custom_cmap)
 
 plt.title('GRÁFICO 6 - Distribuição Percentual de Resultados por Classe de Processo - 1ª Instância', fontsize=10, fontweight='bold')
