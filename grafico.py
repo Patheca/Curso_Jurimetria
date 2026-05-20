@@ -54,3 +54,75 @@ Ele é útil para entender a distribuição dos desfechos dos processos com mér
 st.write("")
 
 
+tese_columns = [
+    'Tese:_Legalidade_do_Teto_de_Custo_Fiscal_(Art._4º-A_Lei_14.148/21)',
+    'Tese:_Legalidade_do_Ato_Declaratório_Executivo_RFB_02/2025',
+    'Tese:_Inexistência_de_Isenção_Onerosa_(Art._178_CTN)',
+    'Tese:_Observância_da_Anterioridade_Tributária',
+    'Tese:_Ausência_de_Direito_Adquirido_a_Regime_Jurídico'
+]
+
+accepted_counts = {}
+total_counts = {}
+for col in tese_columns:
+    if col in df.columns:
+        accepted_counts[col] = df[df[col] == 'Aceito'].shape[0]
+        total_counts[col] = df[col].dropna().shape[0] # Count non-NaN values
+
+# Create a DataFrame for plotting
+accepted_df = pd.DataFrame(list(accepted_counts.items()), columns=['Tese', 'Contagem de Aceitos'])
+accepted_df['Total de Teses'] = accepted_df['Tese'].map(total_counts)
+accepted_df['Percentual Aceito'] = (accepted_df['Contagem de Aceitos'] / accepted_df['Total de Teses']) * 100
+
+# Shorten thesis names for better readability on the plot
+accepted_df['Tese Curta'] = accepted_df['Tese'].str.replace('Tese:_', '').str.replace('_(Art._4º-A_Lei_14.148/21)', '').str.replace('_(Art._178_CTN)', '').str.replace('RFB_02/2025', '').str.replace('_', ' ').str.strip()
+
+# Sort by 'Contagem de Aceitos' for better visualization
+accepted_df = accepted_df.sort_values(by='Contagem de Aceitos', ascending=False)
+
+# Create a custom palette starting with the requested color
+custom_palette = sns.light_palette("#942234", n_colors=len(accepted_df), reverse=True)
+
+plt.figure(figsize=(12, 8))
+ax = sns.barplot(
+    x='Contagem de Aceitos',
+    y='Tese Curta',
+    data=accepted_df,
+    palette=custom_palette
+)
+
+plt.title('GRÁFICO 2 - Aderência às Teses de Defesa - 1ª Instância (Fazenda Nacional)')
+plt.xlabel('Quantidade de Teses Aceitas')
+plt.ylabel('Teses - 1ª Instância')
+
+# Loop para adicionar os percentuais dentro da barra
+for i, (index, row) in enumerate(accepted_df.iterrows()):
+    bar = ax.patches[i]
+    width = bar.get_width()
+    y = bar.get_y() + bar.get_height() / 2
+
+    # Cor da barra (RGB)
+    r, g, b, _ = bar.get_facecolor()
+
+    # Cálculo de luminosidade (percepção humana)
+    luminosidade = (0.299*r + 0.587*g + 0.114*b)
+
+    # Escolha automática da cor do texto
+    text_color = 'white' if luminosidade < 0.5 else 'black'
+
+    # Texto perto da borda direita, mas dentro da barra
+    plt.text(
+        width - 0.1,   # deslocamento pequeno e fixo
+        y,
+        f"{row['Percentual Aceito']:.1f}%",
+        va='center',
+        ha='right',
+        color=text_color,
+        fontsize=11
+    )
+
+plt.tight_layout()
+st.pyplot(plt)
+plt.show()
+
+
