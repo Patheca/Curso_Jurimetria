@@ -1,3 +1,8 @@
+#!pip install streamlit
+#!pip install pandas
+#!pip install seaborn
+#!pip install matplotlib
+
 import streamlit as st
 import pandas as pd
 import seaborn as sns
@@ -12,4 +17,5 @@ df = pd.read_excel(url, sheet_name="SENTENÇAS")
 
 # Visualizar primeiras linhas
 df.head()
-st.write('deu certo')
+st.header('ESTUDO JURIMÉTRICO SOBRE CORRELAÇÃO ARGUMENTATIVA NO MACROLITÍGIO FISCAL')
+
