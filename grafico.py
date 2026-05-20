@@ -352,3 +352,55 @@ Ele é útil para visualizar a proporção de cada classe em relação ao total 
 
 
 
+st.markdown("<br><br>", unsafe_allow_html=True)
+
+
+
+
+import matplotlib.colors as mcolors
+
+# Criar uma tabela cruzada para contar os resultados por classe
+df_crosstab = pd.crosstab(df['Classe'], df['Resultado'], normalize='index') * 100
+
+# Definir a ordem das colunas de resultado para o gráfico
+orden_resultados = ['Improcedente', 'Procedente em parte', 'Procedente']
+
+# Garantir que a ordem das colunas seja consistente
+df_crosstab = df_crosstab[orden_resultados]
+
+# Definir as cores personalizadas
+custom_colors = ['#942234', '#aa8424', '#0c326f']
+custom_cmap = mcolors.ListedColormap(custom_colors)
+
+# Plotar o gráfico de barras empilhadas
+fig, ax = plt.subplots(figsize=(12, 7))
+df_crosstab.plot(kind='bar', stacked=True, ax=ax, colormap=custom_cmap)
+
+plt.title('GRÁFICO 6 - Distribuição Percentual de Resultados por Classe de Processo - 1ª Instância')
+plt.xlabel('Classe de Processo')
+plt.ylabel('Percentual (%)')
+plt.xticks(rotation=45, ha='right')
+plt.legend(title='Resultado', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+st.pyplot(plt)
+plt.show()
+
+
+st.markdown("""
+<div style="
+    padding: 15px;
+    background-color: #f0f2f6;
+    border-left: 5px solid #0c326f;
+    border-radius: 5px;
+">
+<b>Distribuição de Resultados por Classe de Processo</b><br>
+Este gráfico de barras empilhadas mostra a contagem de cada tipo de <i>resultado</i> 
+(Improcedente, Procedente em parte, Procedente) para cada <i>classe</i> de processo. 
+É útil para entender se diferentes classes de processo tendem a ter desfechos distintos.
+</div>
+""", unsafe_allow_html=True)
+
+
+
+
+
