@@ -141,6 +141,10 @@ do sucesso de cada tese.
 """, unsafe_allow_html=True)
 
 
+
+st.markdown("<br><br>", unsafe_allow_html=True)
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 
