@@ -31,7 +31,7 @@ df_merito_sim = df[df['Mérito'] == 'Sim'].copy()
 
 plt.figure(figsize=(10, 6))
 sns.countplot(y=df_merito_sim['Resultado'], order=df_merito_sim['Resultado'].value_counts().index, palette=['#942234', '#aa8424', '#0c326f'])
-plt.title('GRÁFICO 1 - Contagem de Processos por Resultado (Mérito = Sim)')
+plt.title('GRÁFICO 1 - Contagem de Processos por Resultado (Mérito = Sim)', fontsize=10, fontweight='bold')
 plt.xlabel('Quantidade de Processos')
 plt.ylabel('Resultado da Sentença')
 st.pyplot(plt)
@@ -91,7 +91,7 @@ ax = sns.barplot(
     palette=custom_palette
 )
 
-plt.title('GRÁFICO 2 - Aderência às Teses de Defesa - 1ª Instância (Fazenda Nacional)')
+plt.title('GRÁFICO 2 - Aderência às Teses de Defesa - 1ª Instância (Fazenda Nacional)', fontsize=10, fontweight='bold')
 plt.xlabel('Quantidade de Teses Aceitas')
 plt.ylabel('Teses - 1ª Instância')
 
@@ -199,7 +199,7 @@ ax = sns.barplot(
     palette=custom_palette
 )
 
-plt.title('GRÁFICO 3 - Aderência às Teses de Defesa - 2ª Instância (Fazenda Nacional)')
+plt.title('GRÁFICO 3 - Aderência às Teses de Defesa - 2ª Instância (Fazenda Nacional)', fontsize=10, fontweight='bold')
 plt.xlabel('Quantidade de Teses Aceitas')
 plt.ylabel('Teses - 2ª Instância')
 
@@ -281,7 +281,7 @@ ax.plot(angles, inst2, linewidth=2, label="2ª Instância", color="#aa8424")
 ax.fill(angles, inst2, alpha=0.2, facecolor="#aa8424")
 
 ax.set_thetagrids(np.degrees(angles[:-1]), labels)
-plt.title("GRÁFICO 4 - Comparação da Aceitação das Teses — 1ª x 2ª Instância", fontsize=14, pad=25)
+plt.title("GRÁFICO 4 - Comparação da Aceitação das Teses — 1ª x 2ª Instância", fontsize=10, fontweight='bold', pad=25)
 plt.legend(loc="upper left", bbox_to_anchor=(1.2, 1))
 st.pyplot(plt)
 plt.show()
@@ -324,7 +324,7 @@ ax.barh(cats[::-1], proporcao.values[::-1], color="#aa8424", edgecolor="white", 
 for i, p in enumerate(proporcao.values[::-1]):
     ax.text(p + 0.5, i, f"{p:.1f}%".replace(".", ","), va="center", fontsize=9)
 ax.set_xlim(0, 100)
-ax.set_title(f"GRÁFICO 5 - {COLUNA} — Frequência relativa da amostra - SENTENÇAS")
+ax.set_title(f"GRÁFICO 5 - {COLUNA} — Frequência relativa da amostra - SENTENÇAS", fontsize=10, fontweight='bold')
 ax.set_xlabel("%")
 ax.spines[["top", "right"]].set_visible(False)
 plt.tight_layout()
@@ -375,7 +375,7 @@ custom_cmap = mcolors.ListedColormap(custom_colors)
 fig, ax = plt.subplots(figsize=(12, 7))
 df_crosstab.plot(kind='bar', stacked=True, ax=ax, colormap=custom_cmap)
 
-plt.title('GRÁFICO 6 - Distribuição Percentual de Resultados por Classe de Processo - 1ª Instância')
+plt.title('GRÁFICO 6 - Distribuição Percentual de Resultados por Classe de Processo - 1ª Instância', fontsize=10, fontweight='bold')
 plt.xlabel('Classe de Processo')
 plt.ylabel('Percentual (%)')
 plt.xticks(rotation=45, ha='right')
@@ -431,7 +431,7 @@ custom_cmap = mcolors.ListedColormap(custom_colors)
 
 # Plotar o gráfico de barras empilhadas com o colormap personalizado
 percentual_por_faixa.plot(kind='bar', stacked=True, figsize=(12, 7), colormap=custom_cmap)
-plt.title('GRÁFICO 7 - Distribuição de Resultados por Faixa de Valor da Causa - 1ª Instância')
+plt.title('GRÁFICO 7 - Distribuição de Resultados por Faixa de Valor da Causa - 1ª Instância', fontsize=10, fontweight='bold')
 plt.xlabel('Faixa de Valor da Causa')
 plt.ylabel('Percentual (%)')
 plt.xticks(rotation=45, ha='right')
