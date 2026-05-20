@@ -236,6 +236,23 @@ st.pyplot(plt)
 plt.show()
 
 
+
+st.markdown("""
+<div style="
+    padding: 15px;
+    background-color: #f0f2f6;
+    border-left: 5px solid #0c326f;
+    border-radius: 5px;
+">
+<b>Aderência às Teses de Defesa por Percentual (Fazenda Nacional)</b><br>
+Este gráfico de barras apresenta o percentual de vezes que cada tese de defesa da Fazenda Nacional foi aceita 
+em relação ao total de vezes que foi avaliada em 2ª instância.
+</div>
+""", unsafe_allow_html=True)
+
+
+st.markdown("<br><br>", unsafe_allow_html=True)
+
 import numpy as np
 import matplotlib.pyplot as plt
 
