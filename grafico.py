@@ -8,6 +8,11 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+
+
+plt.rcParams['figure.figsize'] = (10, 6)   
+plt.rcParams['figure.dpi'] = 100           
+
 sns.set(style="whitegrid")
 
 
