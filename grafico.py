@@ -188,11 +188,52 @@ plt.xlabel('Quantidade de Teses Aceitas')
 plt.ylabel('Tese')
 
 plt.tight_layout()
-st.pyplot(plt)
+
 plt.show()
 
 
+plt.figure(figsize=(12, 8))
+ax = sns.barplot(
+    x='Contagem de Aceitos',
+    y='Tese Curta',
+    data=accepted_df_acor,
+    palette=custom_palette
+)
 
+plt.title('GRÁFICO 3 - Aderência às Teses de Defesa - 2ª Instância (Fazenda Nacional)')
+plt.xlabel('Quantidade de Teses Aceitas')
+plt.ylabel('Teses - 2ª Instância')
+
+# Loop para adicionar os percentuais dentro da barra
+for i, (index, row) in enumerate(accepted_df_acor.iterrows()):
+    bar = ax.patches[i]
+    width = bar.get_width()
+    y = bar.get_y() + bar.get_height() / 2
+
+    # Cor da barra (RGB)
+    r, g, b, _ = bar.get_facecolor()
+
+    # Cálculo de luminosidade (percepção humana)
+    luminosidade = (0.299*r + 0.587*g + 0.114*b)
+
+    # Escolha automática da cor do texto
+    text_color = 'white' if luminosidade < 0.5 else 'black'
+
+    # Texto perto da borda direita, mas dentro da barra
+    if row['Percentual Aceito'] > 0: # Only display if percentage is greater than 0
+        plt.text(
+            width - 0.1,
+            y,
+            f"{row['Percentual Aceito']:.1f}%",
+            va='center',
+            ha='right',
+            color=text_color,
+            fontsize=11
+        )
+
+plt.tight_layout()
+st.pyplot(plt)
+plt.show()
 
 
 import numpy as np
