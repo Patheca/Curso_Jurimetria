@@ -330,7 +330,7 @@ ax.set_xlabel("%")
 ax.spines[["top", "right"]].set_visible(False)
 plt.tight_layout()
 print("Gráfico salvo: p2_classe_relativa.png")
-pt.pyplot(plt)
+st.pyplot(plt)
 plt.show()
 
 
