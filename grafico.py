@@ -37,3 +37,18 @@ plt.ylabel('Resultado da Sentença')
 st.pyplot(plt)
 plt.show()
 
+st.markdown("""
+<div style="
+    padding: 15px;
+    background-color: #f0f2f6;
+    border-left: 5px solid #0c326f;
+    border-radius: 5px;
+">
+<b>Contagem de Processos por Resultado (Mérito = Sim)</b><br>
+Este gráfico de barras horizontais mostra a contagem de processos para cada categoria de resultado 
+(Improcedente, Procedente em parte, Procedente), apenas para aqueles processos onde a coluna 'Mérito' é igual a 'Sim'. 
+Ele é útil para entender a distribuição dos desfechos dos processos com mérito avaliado.
+</div>
+""", unsafe_allow_html=True)
+
+
