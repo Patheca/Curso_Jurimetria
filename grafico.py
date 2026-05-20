@@ -288,3 +288,18 @@ st.pyplot(plt)
 plt.show()
 
 
+st.markdown("""
+<div style="
+    padding: 15px;
+    background-color: #f0f2f6;
+    border-left: 5px solid #0c326f;
+    border-radius: 5px;
+">
+<b>Comparação entre aceitação das teses em 1ª e 2ª Instância</b><br>
+O gráfico radar chart evidencia a pacificação jurisprudencial no TRF5, com aceitação praticamente integral 
+das teses de mérito.
+</div>
+""", unsafe_allow_html=True)
+
+
+
