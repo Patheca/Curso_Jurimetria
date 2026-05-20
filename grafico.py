@@ -141,3 +141,38 @@ do sucesso de cada tese.
 """, unsafe_allow_html=True)
 
 
+import numpy as np
+import matplotlib.pyplot as plt
+
+labels = [
+    "Art. 178 CTN",
+    "Teto Orçamentário",
+    "ADE 02/2025",
+    "Anterioridade",
+    "Direito Adquirido"
+]
+
+inst1 = [90, 89, 85, 75, 88]
+inst2 = [100, 100, 100, 98, 100]
+
+angles = np.linspace(0, 2*np.pi, len(labels), endpoint=False).tolist()
+inst1 += inst1[:1]
+inst2 += inst2[:1]
+angles += angles[:1]
+
+plt.figure(figsize=(7,7))
+ax = plt.subplot(111, polar=True)
+
+ax.plot(angles, inst1, linewidth=2, label="1ª Instância", color="#942234")
+ax.fill(angles, inst1, alpha=0.2, facecolor="#942234")
+
+ax.plot(angles, inst2, linewidth=2, label="2ª Instância", color="#aa8424")
+ax.fill(angles, inst2, alpha=0.2, facecolor="#aa8424")
+
+ax.set_thetagrids(np.degrees(angles[:-1]), labels)
+plt.title("GRÁFICO 4 - Comparação da Aceitação das Teses — 1ª x 2ª Instância", fontsize=14, pad=25)
+plt.legend(loc="upper left", bbox_to_anchor=(1.2, 1))
+st.pyplot(plt)
+plt.show()
+
+
