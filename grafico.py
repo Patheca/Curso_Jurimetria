@@ -324,7 +324,7 @@ cats = contagem.index.tolist()
 
 #Gráfico — Frequência relativa da população
 proporcao = (contagem / contagem.sum()) * 100
-fig, ax = plt.subplots(figsize=(8, 4))
+fig, ax = plt.subplots(figsize=(10, 6))
 ax.barh(cats[::-1], proporcao.values[::-1], color="#aa8424", edgecolor="white", height=0.5)
 for i, p in enumerate(proporcao.values[::-1]):
     ax.text(p + 0.5, i, f"{p:.1f}%".replace(".", ","), va="center", fontsize=9)
@@ -377,7 +377,7 @@ custom_colors = ['#942234', '#aa8424', '#0c326f']
 custom_cmap = mcolors.ListedColormap(custom_colors)
 
 # Plotar o gráfico de barras empilhadas
-fig, ax = plt.subplots(figsize=(10, 8))
+fig, ax = plt.subplots(figsize=(10, 6))
 df_crosstab.plot(kind='bar', stacked=True, ax=ax, colormap=custom_cmap)
 
 plt.title('GRÁFICO 6 - Distribuição Percentual de Resultados por Classe de Processo - 1ª Instância', fontsize=10, fontweight='bold')
@@ -435,7 +435,7 @@ custom_colors = ['#942234', '#aa8424', '#0c326f']
 custom_cmap = mcolors.ListedColormap(custom_colors)
 
 # Plotar o gráfico de barras empilhadas com o colormap personalizado
-percentual_por_faixa.plot(kind='bar', stacked=True, figsize=(10, 8), colormap=custom_cmap)
+percentual_por_faixa.plot(kind='bar', stacked=True, figsize=(10, 6), colormap=custom_cmap)
 plt.title('GRÁFICO 7 - Distribuição de Resultados por Faixa de Valor da Causa - 1ª Instância', fontsize=10, fontweight='bold')
 plt.xlabel('Faixa de Valor da Causa')
 plt.ylabel('Percentual (%)')
