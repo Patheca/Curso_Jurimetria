@@ -19,6 +19,8 @@ df = pd.read_excel(url, sheet_name="SENTENÇAS")
 df.head()
 st.header('ESTUDO JURIMÉTRICO SOBRE CORRELAÇÃO ARGUMENTATIVA NO MACROLITÍGIO FISCAL')
 
+st.markdown("<br><br>", unsafe_allow_html=True)
+
 df.columns = (
     df.columns.str.replace(" ", "_")
 )
