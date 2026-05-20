@@ -324,7 +324,7 @@ cats = contagem.index.tolist()
 
 #Gráfico — Frequência relativa da população
 proporcao = (contagem / contagem.sum()) * 100
-fig, ax = plt.subplots(figsize=(10, 6))
+fig, ax = plt.subplots(figsize=(10, 4))
 ax.barh(cats[::-1], proporcao.values[::-1], color="#aa8424", edgecolor="white", height=0.5)
 for i, p in enumerate(proporcao.values[::-1]):
     ax.text(p + 0.5, i, f"{p:.1f}%".replace(".", ","), va="center", fontsize=9)
