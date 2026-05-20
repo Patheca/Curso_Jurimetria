@@ -244,7 +244,7 @@ st.markdown("""
     border-left: 5px solid #0c326f;
     border-radius: 5px;
 ">
-<b>Aderência às Teses de Defesa por Percentual (Fazenda Nacional)</b><br>
+<b>Aderência às Teses de Defesa por Percentual - 2ª Instância (Fazenda Nacional)</b><br>
 Este gráfico de barras apresenta o percentual de vezes que cada tese de defesa da Fazenda Nacional foi aceita 
 em relação ao total de vezes que foi avaliada em 2ª instância.
 </div>
