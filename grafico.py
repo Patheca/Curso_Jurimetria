@@ -145,6 +145,56 @@ do sucesso de cada tese.
 st.markdown("<br><br>", unsafe_allow_html=True)
 
 
+
+df_acor = pd.read_excel(url, sheet_name="ACÓRDÃO")
+
+df_acor.columns = (
+    df_acor.columns.str.replace(" ", "_")
+)
+tese_columns = [
+    'Defesa_1:_Inaplicabilidade_Art._178_CTN',
+    'Defesa_2:_Respeito_à_Anterioridade',
+    'Defesa_3:_Teto_LRF',
+    'Defesa_4:_Validade_ADE_02/2025',
+    'Defesa_5:_Inadequação_da_Via_Eleita'
+]
+
+# Prepare data for plotting, including total count for percentage calculation
+accepted_counts = {}
+total_counts = {}
+for col in tese_columns:
+    if col in df_acor.columns:
+        accepted_counts[col] = df_acor[df_acor[col] == 'Aceito'].shape[0]
+        total_counts[col] = df_acor[col].dropna().shape[0] # Count non-NaN values
+
+# Create a DataFrame for plotting
+accepted_df_acor = pd.DataFrame(list(accepted_counts.items()), columns=['Tese', 'Contagem de Aceitos'])
+accepted_df_acor['Total de Teses'] = accepted_df_acor['Tese'].map(total_counts)
+accepted_df_acor['Percentual Aceito'] = (accepted_df_acor['Contagem de Aceitos'] / accepted_df_acor['Total de Teses']) * 100
+
+# Shorten thesis names for better readability on the plot
+accepted_df_acor['Tese Curta'] = accepted_df_acor['Tese'].str.replace('tese:_', '').str.replace('_(art._4º-a_lei_14.148/21)', '').str.replace('_(art._178_ctn)', '').str.replace('rfb_02/2025', '').str.replace('_', ' ').str.strip()
+
+# Sort by 'Contagem de Aceitos' for better visualization
+accepted_df_acor = accepted_df_acor.sort_values(by='Contagem de Aceitos', ascending=False)
+
+# Create a custom palette starting with the requested color
+custom_palette = sns.light_palette("#942234", n_colors=len(accepted_df_acor), reverse=True)
+
+plt.figure(figsize=(12, 8))
+sns.barplot(x='Contagem de Aceitos', y='Tese Curta', data=accepted_df, palette=custom_palette)
+plt.title('Aderência às Teses de Defesa (Fazenda Nacional)')
+plt.xlabel('Quantidade de Teses Aceitas')
+plt.ylabel('Tese')
+
+plt.tight_layout()
+st.pyplot(plt)
+plt.show()
+
+
+
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 
